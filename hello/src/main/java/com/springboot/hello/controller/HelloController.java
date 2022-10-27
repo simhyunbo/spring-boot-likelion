@@ -1,6 +1,9 @@
 package com.springboot.hello.controller;
 
+import com.springboot.hello.domain.dto.MemberDto;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/get-api")
@@ -30,4 +33,17 @@ public class HelloController {
                                @RequestParam String organization){
         return name + " " + email + " " + organization;
     }
+    @GetMapping(value = "/request2")
+    public String getVariable2(@RequestParam Map<String, String> param) {
+        param.entrySet().forEach((map) -> {
+            System.out.printf("key:%s value:%s\n", map.getKey(), map.getValue());
+        });
+        return "request2가 호출 완료 되었습니다";
+    }
+
+    @GetMapping(value ="/request3")
+    public String getVariable3(MemberDto memberDto){
+        return memberDto.toString();
+    }
+
 }
