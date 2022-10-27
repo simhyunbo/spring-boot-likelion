@@ -7,7 +7,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/get-api")
-public class HelloController {
+public class GetController {
 
     //컨트롤러에 어떤 메소드를 할당할지 정해준다
     //@RestController : dispatcherServlet이 매핑해준 Controller 등록
