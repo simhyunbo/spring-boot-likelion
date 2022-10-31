@@ -11,13 +11,8 @@ public class HospitalPaser implements Parser<Hospital> {
     public Hospital parse(String str) {
 
         String[] row = str.split("\",\"");
-        System.out.println(Arrays.toString(row));
 
         Hospital hospital = new Hospital();
-
-
-
-
         hospital.setId(Integer.parseInt(row[0].replace("\"", "")));
         hospital.setOpenServiceName(row[1]);
         hospital.setOpenLocalGovernmentCode(Integer.parseInt(row[3]));
@@ -38,9 +33,10 @@ public class HospitalPaser implements Parser<Hospital> {
         hospital.setTotalNumberOfBeds(Integer.parseInt(row[31]));
         hospital.setTotalAreaSize(Float.parseFloat(row[32]));
 
+        return hospital;
 
 
-        return new Hospital();
+
     }
 
 
