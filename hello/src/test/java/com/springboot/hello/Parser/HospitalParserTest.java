@@ -24,6 +24,13 @@ class HospitalParserTest {
     HospitalDao hospitalDao;
 
     @Test
+    @DisplayName("getCount")
+    void count(){
+       hospitalDao.getCount();
+       assertEquals(1, hospitalDao.getCount());
+    }
+
+    @Test
     @DisplayName("Hospital이 insert가 잘 되는지")
     void add(){
         HospitalParser hp = new HospitalParser();
