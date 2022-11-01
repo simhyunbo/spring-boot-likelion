@@ -3,9 +3,8 @@ package com.springboot.hello.Parser;
 import com.springboot.hello.domain.dto.Hospital;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
-public class HospitalPaser implements Parser<Hospital> {
+public class HospitalParser implements Parser<Hospital> {
 
     @Override
     public Hospital parse(String str) {
