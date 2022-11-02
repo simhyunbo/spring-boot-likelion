@@ -2,6 +2,7 @@ package com.springboot.hello.Parser;
 
 import com.springboot.hello.dao.HospitalDao;
 import com.springboot.hello.domain.dto.Hospital;
+import com.springboot.hello.service.HospitalService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +24,41 @@ class HospitalParserTest {
     @Autowired
     HospitalDao hospitalDao;
 
+    @Autowired
+    HospitalService hospitalService;
+
     @Test
-    @DisplayName("getCount")
-    void count(){
-       hospitalDao.getCount();
-       assertEquals(1, hospitalDao.getCount());
+    @DisplayName("10만건 이상 데이터가 파싱 되는지")
+    void oneHundreadThousandRows() throws IOException {
+        // 서버환경에서 build할 때 문제가 생길 수 있습니다.
+
+        // 어디에서든지 실행할 수 있게 짜는 것이 목표.
+//        hospitalDao.deleteAll();
+//        String filename = "C:\\Users\\USER\\Desktop\\fulldata_01_01_02_P_의원_utf8.txt";
+//        int cnt = this.hospitalService.insertLargeVolumeHospitalData(filename);
+//        assertTrue(cnt > 1000);
+//        assertTrue(cnt > 10000);
+//        System.out.printf("파싱된 데이터 개수:%d", cnt);
     }
+
 
     @Test
     @DisplayName("Hospital이 insert가 잘 되는지")
     void add(){
-        HospitalParser hp = new HospitalParser();
-        Hospital hospital = hp.parse(line1);
-        hospitalDao.add(hospital);
+//        hospitalDao.deleteAll();
+//        assertEquals(0,hospitalDao.getCount());
+//        HospitalParser hp = new HospitalParser();
+//        Hospital hospital = hp.parse(line1);
+//        hospitalDao.add(hospital);
+//        assertEquals(1,hospitalDao.getCount());
+//
+//        Hospital selectedHospital = hospitalDao.findById(hospital.getId());
+//        assertEquals(selectedHospital.getId(), hospital.getId());
+//        assertEquals(selectedHospital.getOpenServiceName(), hospital.getOpenServiceName());
+//        assertEquals(selectedHospital.getHospitalName(), hospital.getHospitalName());
+//        // 날짜, float
+//        assertTrue(selectedHospital.getLicenseDate().isEqual(hospital.getLicenseDate()));
+//        assertEquals(selectedHospital.getTotalAreaSize(), hospital.getTotalAreaSize());
     }
     @Test
     @DisplayName("10만건 이상 데이터가 파싱 되는지")
