@@ -13,7 +13,7 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/user")
     public String add(@RequestBody User user) {
 
             userDao.add(user);
@@ -21,13 +21,13 @@ public class UserController {
 
     }
 
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/user/{id}")
     public String delete(@PathVariable String id) {
         userDao.delete(id);
         return "delete성공";
     }
 
-    @DeleteMapping(value = "/deleteAll")
+    @DeleteMapping(value = "/user/all")
     public String deleteAll(){
         userDao.deleteAll();
         return "deleteAll 성공";

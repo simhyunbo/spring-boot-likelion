@@ -3,17 +3,44 @@ package com.springboot.hello.dao;
 
 import com.springboot.hello.domain.dto.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HospitalDao {
     //요즘에는 @Autowired를 쓰는것 보다 private final 로 사용한다.
     private final JdbcTemplate jdbcTemplate;
-
     public HospitalDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    //람다
+    RowMapper<Hospital> rowMapper = (rs, rowNum) -> {
+        Hospital hospital = new Hospital();
+        hospital.setId(rs.getInt("id"));
+        hospital.setOpenServiceName(rs.getString("open_service_name"));
+        hospital.setOpenLocalGovernmentCode(rs.getInt("open_local_government_code"));
+        hospital.setManagementNumber(rs.getString("management number"));
+        hospital.setLicenseDate(rs.getTimestamp("license_date").toLocalDateTime());
+        hospital.setBusinessStatus(rs.getInt("business_status"));
+        hospital.setBusinessStatusCode(rs.getInt("business_status_code"));
+        hospital.setPhone(rs.getString("phone"));
+        hospital.setFullAddress(rs.getString("full_address"));
+        hospital.setRoadNameAddress(rs.getString("road_name_address"));
+        hospital.setHospitalName(rs.getString("hospital_name"));
+        hospital.setHealthcareProviderCount(rs.getInt("healthcare_provider_count"));
+        hospital.setPatientRoomCount(rs.getInt("patient_room_count"));
+        hospital.setTotalNumberOfBeds(rs.getInt("total_number_of_beds"));
+        hospital.setTotalAreaSize(rs.getFloat("total_area_size"));
+        return hospital;
+    };
+    public Hospital findById(int id){
+        String sql = "SELECT * FROM nation_wide_hospitals WHERE id = ?";
+        return this.jdbcTemplate.queryForObject(sql,rowMapper,id);
+    }
+    public  void deleteAll(){
+        this.jdbcTemplate.update("delete from nation_wide_hospitals");
+    }
     public int getCount(){
         String sql = "SELECT count(id) FROM likelion.nation_wide_hospitals";
         return this.jdbcTemplate.queryForObject(sql,Integer.class);
